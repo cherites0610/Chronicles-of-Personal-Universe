@@ -1,4 +1,5 @@
 <script setup>
+
 </script>
 
 <template>
@@ -7,6 +8,7 @@
     <button class="btn btn-primary">Primary button</button>
     <h1>我是羽毛</h1>
     <h1>我不知道我是誰</h1>
+    <button>我是按鈕</button>
   </div>
 </template>
 
