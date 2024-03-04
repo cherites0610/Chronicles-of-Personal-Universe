@@ -6,7 +6,6 @@ import offCanvas from './components/offCanvas.vue';
   <offCanvas />
   <router-view></router-view>
 </template>
-
 <style scoped>
 
 </style>
