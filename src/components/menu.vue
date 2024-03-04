@@ -17,7 +17,6 @@
 </template>
 
 <script setup>
-import { reactive, h } from 'vue';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
