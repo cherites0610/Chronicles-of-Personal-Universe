@@ -19,7 +19,7 @@
 import { router } from '../router/index'
 import { HomeOutlined,PieChartOutlined, MailOutlined, } from '@ant-design/icons-vue';
 
-const selectedKeys = ref(['login'])
+const selectedKeys = ref(['home'])
 
 const handleMenuClick = ({ item, key, keyPath }) => {
   router.push('/' + key)

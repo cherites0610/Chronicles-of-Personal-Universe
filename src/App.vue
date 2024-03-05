@@ -1,14 +1,14 @@
 <script setup>
 import Menu from './components/menu.vue';
-import { UserOutlined } from '@ant-design/icons-vue';
+import { MenuUnfoldOutlined, MenuFoldOutlined, } from '@ant-design/icons-vue';
 
-const collapsed = ref(false);
+const collapsed = ref(true);
 </script>
 
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider :collapsedWidth="70" v-model:collapsed="collapsed" collapsible>
-      <div v-if="!collapsed" class="logo">
+    <a-layout-sider :trigger="null" :collapsedWidth="0" v-model:collapsed="collapsed" collapsible>
+      <div class="logo">
         <a-space :size="large" :style="{ height: '100%', weight: '100%' }">
           <a-avatar size="large" :style="{ backgroundColor: D2D6EF, verticalAlign: 'middle' }">
             user
@@ -19,6 +19,8 @@ const collapsed = ref(false);
       <Menu></Menu>
     </a-layout-sider>
     <a-layout-content style="margin: 0 16px">
+      <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
+      <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
       <RouterView></RouterView>
     </a-layout-content>
   </a-layout>
@@ -30,5 +32,17 @@ const collapsed = ref(false);
   height: 55px;
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
 }
 </style>
