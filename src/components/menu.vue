@@ -1,5 +1,9 @@
 <template>
   <a-menu @click="handleMenuClick" mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
+    <a-menu-item key="home">
+      <HomeOutlined />
+      <span>主界面</span>
+    </a-menu-item>
     <a-menu-item key="login">
       <PieChartOutlined />
       <span>登錄</span>
@@ -13,7 +17,7 @@
 
 <script setup>
 import { router } from '../router/index'
-import { PieChartOutlined, MailOutlined, } from '@ant-design/icons-vue';
+import { HomeOutlined,PieChartOutlined, MailOutlined, } from '@ant-design/icons-vue';
 
 const selectedKeys = ref(['login'])
 
