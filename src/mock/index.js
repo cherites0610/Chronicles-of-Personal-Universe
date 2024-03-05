@@ -1,3 +1,16 @@
 import Mock from "mockjs";
 
-Mock.mock('/api/test','post', {'list|1-10': [{'id|+1': 1}]})
+Mock.mock('/api/login', 'post',
+    {
+        "object": {
+            "name": '@cname',
+            "uId": 1
+        }
+    }
+)
+
+Mock.mock('/api/register', 'post',
+    {
+        
+    }
+)
