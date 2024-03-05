@@ -2,15 +2,14 @@ import Mock from "mockjs";
 
 Mock.mock('/api/login', 'post',
     {
-        "object": {
-            "name": '@cname',
-            "uId": 1
-        }
+        "name": '@cname',
+        "uId": 1,
+        "userPicture": 1
     }
 )
 
 Mock.mock('/api/register', 'post',
     {
-        
+
     }
 )

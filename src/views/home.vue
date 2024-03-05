@@ -1,5 +1,4 @@
 <template>
-    {{ value }}
     <a-space align="start">
         <a-calendar v-model:value="selectTime" @panelChange="onPanelChange" />
         <TimingScheduleCard  :selectTime="selectTime.format('YYYY/MM/DD dddd')"/>
@@ -9,11 +8,16 @@
 <script setup>
 import TimingScheduleCard from '../components/TimingScheduleCard.vue';
 import dayjs from 'dayjs';
+import { useUserStore } from '../pinia/userStore';
+
+const userStore = useUserStore();
+const { uId, userName } = storeToRefs(userStore);
+
 const selectTime = ref(dayjs());
 const onPanelChange = (value, mode) => {
     console.log(value, mode);
 };
-console.log(dayjs.locale())
+// console.log(uId.value)
 </script>
 
 <style lang="scss" scoped>
