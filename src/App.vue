@@ -1,6 +1,11 @@
 <script setup>
 import Menu from './components/menu.vue';
 import { MenuUnfoldOutlined, MenuFoldOutlined, } from '@ant-design/icons-vue';
+import { router } from './router/index'
+
+const handleClickAccount = () => {
+  router.push('/login')  
+}
 
 const collapsed = ref(true);
 </script>
@@ -8,7 +13,7 @@ const collapsed = ref(true);
 <template>
   <a-layout style="min-height: 100vh">
     <a-layout-sider :trigger="null" :collapsedWidth="0" v-model:collapsed="collapsed" collapsible>
-      <div class="logo">
+      <div @click="handleClickAccount" class="logo">
         <a-space :size="large" :style="{ height: '100%', weight: '100%' }">
           <a-avatar size="large" :style="{ backgroundColor: D2D6EF, verticalAlign: 'middle' }">
             user

@@ -25,7 +25,7 @@
             </div>
 
             <div style="display: flex; justify-content: center; padding-top: 10px;">
-                <a-button type="text" style="color:#7E7E7E; font-size: 13px;">還沒註冊嗎? 點此註冊</a-button>
+                <a-button @click="handleRouterRegister" type="text" style="color:#7E7E7E; font-size: 13px;">還沒註冊嗎? 點此註冊</a-button>
             </div>
         </a-card>
     </div>
@@ -35,9 +35,12 @@
 
 
 <script setup>
-import { defineComponent } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import { router } from '../router/index'
 
+const handleRouterRegister = () => {
+    router.push('/register');
+}
 
 </script>
 
