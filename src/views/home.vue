@@ -1,5 +1,5 @@
 <template>
-    <a-space align="start">
+    <a-space style="margin: 20px 15px 20px 40px;" align="start">
         <a-calendar v-model:value="selectTime" @panelChange="onPanelChange" />
         <TimingScheduleCard  :selectTime="selectTime.format('YYYY/MM/DD dddd')"/>
     </a-space>

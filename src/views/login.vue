@@ -1,5 +1,4 @@
 <template>
-    {{ dayjs().format('YYYY/MM/DD') }}
     <div id="container">
         <a-card :bordered="false" style="width: 350px " class="shape">
             <div style="display: flex; justify-content: center;">
@@ -53,7 +52,6 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { router } from '../router/index'
 import { login } from '../api/userApi'
 import '../mock/index'
-import dayjs from 'dayjs';
 import { notification } from 'ant-design-vue';
 import { useUserStore } from '../pinia/userStore';
 
@@ -73,12 +71,13 @@ const handleLogin = values => {
         console.log(res.data)
         userName.value = res.data.name;
         uId.value = res.data.uId;
-        // notification.open({
-        //     placement: 'bottomLeft',
-        //     type: 'success',
-        //     message: '您好!'+userName.value,
-        //     description: '您今天似乎沒怎麼事情要做！',
-        // });
+        notification.open({
+            placement: 'bottomLeft',
+            type: 'success',
+            message: '您好!'+userName.value,
+            description: '您今天似乎沒怎麼事情要做！',
+            rtl: true
+        });
     }).catch((err) => {
         console.log(err)
     })
@@ -91,7 +90,7 @@ const handleRouterRegister = () => {
 
 <style lang="css" scoped>
 #container {
-    height: 100%;
+    height: 100vh;
     display: flex;
 }
 

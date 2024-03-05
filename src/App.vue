@@ -8,7 +8,7 @@ const userStore = useUserStore();
 const { uId, userName } = storeToRefs(userStore);
 
 const handleClickAccount = () => {
-  router.push('/login')  
+  router.push('/account')  
 }
 
 const collapsed = ref(true);
@@ -42,9 +42,9 @@ const collapsed = ref(true);
 }
 
 .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
+  padding-top: 15px;
+  font-size: 25px;
+  position: absolute;
   cursor: pointer;
   transition: color 0.3s;
 }
