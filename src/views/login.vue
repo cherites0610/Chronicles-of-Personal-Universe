@@ -52,7 +52,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { router } from '../router/index'
 import { login } from '../api/userApi'
 import '../mock/index'
-import { notification } from 'ant-design-vue';
+import { notification,message } from 'ant-design-vue';
 import { useUserStore } from '../pinia/userStore';
 
 const userStore = useUserStore();
@@ -66,19 +66,23 @@ const loginForm = ref({
 
 const handleLogin = values => {
     login('test', 'test').then((res) => {
-        // message.success('登錄成功')
-        router.push('/home')
-        console.log(res.data)
-        userName.value = res.data.name;
-        uId.value = res.data.uId;
-        notification.open({
-            placement: 'bottomLeft',
-            type: 'success',
-            message: '您好!'+userName.value,
-            description: '您今天似乎沒怎麼事情要做！',
-            rtl: true
-        });
+        if (!values.username === 'admin' && values.password === 'admin') {
+            router.push('/home')
+            console.log(res.data)
+            userName.value = res.data.name;
+            uId.value = res.data.uId;
+            notification.open({
+                placement: 'bottomLeft',
+                type: 'success',
+                message: '您好!' + userName.value,
+                description: '您今天似乎沒怎麼事情要做！',
+                rtl: true
+            });
+        }else{
+            message.error('登錄失敗');
+        }
     }).catch((err) => {
+        message.error('登錄失敗');
         console.log(err)
     })
 }
