@@ -21,7 +21,7 @@
             </a-input>
 
             <div class="btnn">
-                <a-button style="background-color:#288CA3; color: white;">登入</a-button>
+                <a-button @click="login" style="background-color:#288CA3; color: white;">登入</a-button>
             </div>
 
             <div style="display: flex; justify-content: center; padding-top: 10px;">
@@ -37,6 +37,12 @@
 <script setup>
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { router } from '../router/index'
+import request  from '../axios/index'
+import '../mock/index'
+
+const login = () => {
+    request.post('/test').then((res) => { console.log(res)}).catch((err)=>{console.log(err)})
+}
 
 const handleRouterRegister = () => {
     router.push('/register');
