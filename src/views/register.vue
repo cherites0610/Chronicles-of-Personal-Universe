@@ -81,5 +81,6 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
     display: flex;
     justify-content: center;
     font-size: 15px;
+    padding-top: 30px;
 }
 </style>
