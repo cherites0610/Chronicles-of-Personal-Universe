@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+import Cookie from 'js-cookie'
 import { useUserStore } from '../pinia/userStore';
 import { router } from '../router/index'
 
@@ -15,6 +16,7 @@ const userStore = useUserStore();
 const { uId, userName } = storeToRefs(userStore);
 
 const handleLogout = () => {
+    Cookie.remove('token')
     uId.value=-1;
     userName.value='未登入';
     router.push('/login');

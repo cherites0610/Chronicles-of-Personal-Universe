@@ -18,7 +18,7 @@ const collapsed = ref(true);
   <a-layout style="min-height: 100vh">
     <a-layout-sider :trigger="null" :collapsedWidth="0" v-model:collapsed="collapsed" collapsible>
       <div @click="handleClickAccount" class="logo">
-        <a-space :size="large" :style="{ height: '100%', weight: '100%' }">
+        <a-space size="large" :style="{ height: '100%', weight: '100%' }">
           <a-avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1"/>
           <span>{{ userName }}</span>
         </a-space>
@@ -42,6 +42,7 @@ const collapsed = ref(true);
 }
 
 .trigger {
+  z-index: 1000;
   padding-top: 15px;
   font-size: 25px;
   position: absolute;
