@@ -3,7 +3,9 @@
     <a-space align="start">
         <a-calendar v-model:value="selectTime" @panelChange="onPanelChange" />
         <div>
-            <TimingScheduleCard  :selectTime="selectTime.format('YYYY/MM/DD dddd')"/>
+            <TimingScheduleCard  :selectTime="selectTime.format('YYYY/MM/DD dddd')">
+                
+            </TimingScheduleCard>
             <a-float-button type="primary" @click="showModal" style="width:80px; height: 80px;"/>
             <div class="addDates">
                 <a-modal v-model:open="open" width="400px" title="增加事項"  style="text-align: center;">
@@ -39,35 +41,75 @@
                         </div>
                     </a-flex>
                     
+                    <!--標籤顏色-->
+                    <a-flex justify="flex-start" style="" >
+                        <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
+                        <TagOutlined />
+                        <div style="padding-top: 5px;padding-left: 10px ;">標籤顏色 :</div>
+                        <div style="padding-left: 56%;">
+                            <a-popover title="標籤顏色" trigger="click">
+                            <template #content>
+
+                                <a-button @click="btnColor" style="border-radius: 50%;  background-color: #FF7575;"/>
+                                <a-button   style="border-radius: 50%;  background-color: #FFBB77;"/>
+                                <a-button   style="border-radius: 50%;  background-color: #FFFF6F;"/>
+                                <a-button   style="border-radius: 50%;  background-color: #79FF79;"/>
+                                <a-button   style="border-radius: 50%;  background-color: #66B3FF;"/>
+                                <a-button   style="border-radius: 50%;  background-color: #6A6AFF;"/>
+                                <a-button   style="border-radius: 50%;  background-color: #B15BFF;"/>
+                            </template>
+                            <div style="width: 50px; height: 50px;">
+                                <a-button style="border-radius: 50%;  background-color: #FF7575; "/>
+                            </div>
+                            
+                            </a-popover>
+                        </div>
+                        
+                    </a-flex>
+                    
                     <!--提醒-->
-                    
-                    
+                    <a-flex justify="flex-start" style="" >
+                        <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
+                        <BellOutlined />
+                        <div style="padding-top: 5px;padding-left: 10px ;">提醒 :</div>
+                    </a-flex>
+
+                    <!--群組-->
+                    <a-flex justify="flex-start" style="margin-top: 15px;" >
+                        <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
+                        <UsergroupAddOutlined />
+                        <div style="padding-top: 5px;padding-left: 10px ;">群組 :</div>
+                    </a-flex>
                 </a-modal>
             </div>
         </div>   
-       
-       
-        
-    </a-space>
-    
+    </a-space>   
 </template>
 
 <script setup>
 import TimingScheduleCard from '../components/TimingScheduleCard.vue';
 import dayjs from 'dayjs';
 import { ref } from 'vue';
-import { FieldTimeOutlined } from '@ant-design/icons-vue';
+import { FieldTimeOutlined,TagOutlined,BellOutlined,UsergroupAddOutlined} from '@ant-design/icons-vue';
 const selectTime = ref(dayjs());
 const onPanelChange = (value, mode) => {
     //console.log(value, mode);
 };
-console.log(dayjs.locale())
+//console.log(dayjs.locale())
 
-const timeTTMM=ref(false)
+const co="FF7575";
+
+const btnColor=()=>{
+
+}
+
+//偵測整天開關動作
 const showTime=()=>{
         if(checked.value==false){console.log("關"+checked.value);}
-        else{console.log("開"+checked.value);}
+        else{console.log("開"+checked.value); }
 }
+//讓全天鈕可以動(disabled=true時會鎖定)
+const checked = ref(false);
 
 //以下是在做增加
 const open = ref(false);
@@ -79,8 +121,7 @@ const handleOk = e => { //點開來後確定
   open.value = false;
 };
 
-//讓全天鈕可以動(disabled=true時會鎖定)
-const checked = ref(false);
+
 
 
 
