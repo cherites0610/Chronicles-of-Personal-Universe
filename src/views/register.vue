@@ -11,15 +11,26 @@
                     <UserOutlined />
                 </template>
             </a-input>
+            <div class="content">暱稱</div>
+            <a-input class="inputtext" v-model:value="userName">
+                <template #prefix> <!--前綴詞-->
+                    <SmileOutlined /> 
+                </template>
+            </a-input>
+            <div class="content">信箱</div>
+            <a-input class="inputtext" v-model:value="userName">
+                <template #prefix> <!--前綴詞-->
+                    <FolderOutlined />
+                </template>
+            </a-input>
             <div class="content">密碼</div>
-
             <a-input class="inputtext" v-model:value="userPassword">
 
                 <template #prefix> <!--前綴詞-->
                     <LockOutlined />
                 </template>
             </a-input>
-
+            
             <div class="btnn">
                 <a-button style="background-color:#288CA3; color: white;">註冊</a-button>
             </div>
@@ -35,7 +46,7 @@
 
 
 <script setup>
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import { UserOutlined, LockOutlined,FolderOutlined,SmileOutlined} from '@ant-design/icons-vue';
 import { router } from '../router/index'
 
 const handleRouterLogin = () => {
