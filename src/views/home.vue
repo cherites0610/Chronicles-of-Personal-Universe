@@ -28,8 +28,8 @@ const { uId, userName } = storeToRefs(userStore);
 
 const spinning = ref(true);
 
-const Schedules = ref({})
-const sDate = ref([])
+const Schedules = ref({});
+const sDate = ref([]);
 
 getScheduleById('2024-03-01', '2024-03-31').then((result) => {
     Schedules.value = result.data.schedules;
