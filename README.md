@@ -1,7 +1,11 @@
-# Vue 3 + Vite
+# 宇宙筆記本
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+你是否也想擁有這個宇宙記事本擁有它！
 
-## Recommended IDE Setup
+你就可以
+* 隨機所欲的記錄事情
+* 跟群組共享事情
+* 給未來的你留言
+* 每件事的檢討本
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+來加入我們吧

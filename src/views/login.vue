@@ -27,7 +27,7 @@
                 </a-form-item>
 
                 <a-form-item name="remember">
-                    <a-checkbox v-model:checked="loginForm.remember">保持登錄</a-checkbox>
+                    <a-checkbox v-model:checked="loginForm.remember" class="chkBox">保持登錄</a-checkbox>
                 </a-form-item>
 
                 <div class="btnn">
@@ -142,5 +142,10 @@ const handleRouterRegister = () => {
     display: flex;
     justify-content: center;
     font-size: 15px;
+}
+
+.chkBox{
+    padding-left: 10px;
+
 }
 </style>
