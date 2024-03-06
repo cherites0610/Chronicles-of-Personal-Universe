@@ -65,8 +65,9 @@ const loginForm = ref({
 })
 
 const handleLogin = values => {
+    console.log(!(values.username == 'admin'))
     login('test', 'test').then((res) => {
-        if (!values.username === 'admin' && values.password === 'admin') {
+        if (!(values.username == 'admin')) {
             router.push('/home')
             console.log(res.data)
             userName.value = res.data.name;
