@@ -12,24 +12,24 @@
                 </template>
             </a-calendar>
             <TimingScheduleCard :selectTime="selectTime.format('YYYY/MM/DD dddd')" />
+
+            <a-float-button type="primary" @click="" style="width:80px; height: 80px;" />
+            <addScheduleForm ref="sForm" />
         </a-space>
     </a-spin>
 </template>
 
 <script setup>
 import TimingScheduleCard from '../components/TimingScheduleCard.vue';
+import addScheduleForm from '../components/addScheduleForm.vue'
 import dayjs from 'dayjs';
-import { useUserStore } from '../pinia/userStore';
 import '../mock/index'
 import { getScheduleById } from '../api/scheduleApi'
 
-const userStore = useUserStore();
-const { uId, userName } = storeToRefs(userStore);
-
 const spinning = ref(true);
-
 const Schedules = ref({});
 const sDate = ref([]);
+const sForm = ref(null);
 
 getScheduleById('2024-03-01', '2024-03-31').then((result) => {
     Schedules.value = result.data.schedules;
@@ -40,42 +40,9 @@ getScheduleById('2024-03-01', '2024-03-31').then((result) => {
 }).catch((err) => {
     console.log(err)
 })
+console.log(sForm.value)
 
-import { ref } from 'vue';
-import { FieldTimeOutlined,TagOutlined,BellOutlined,UsergroupAddOutlined} from '@ant-design/icons-vue';
 const selectTime = ref(dayjs());
-const onPanelChange = (value, mode) => {
-    //console.log(value, mode);
-};
-//console.log(dayjs.locale())
-
-
-
-const btnColor=()=>{
-
-}
-
-//偵測整天開關動作
-const showTime=()=>{
-        if(checked.value==false){console.log("關"+checked.value);}
-        else{console.log("開"+checked.value); }
-}
-//讓全天鈕可以動(disabled=true時會鎖定)
-const checked = ref(false);
-
-//以下是在做增加
-const open = ref(false);
-const showModal = () => { //主介面點開
-  open.value = true;
-};
-const handleOk = e => { //點開來後確定
-  //console.log(e);
-  open.value = false;
-};
-
-
-
-
 
 </script>
 
@@ -87,10 +54,5 @@ const handleOk = e => { //點開來後確定
 
 .ant-picker-calendar .ant-picker-calendar-header {
     padding: 12px 12px;
-}
-
-.addDates{
-    position: fixed;
-
 }
 </style>
