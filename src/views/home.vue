@@ -1,94 +1,46 @@
 <template>
-    {{ value }}
-    <a-space align="start">
-        <a-calendar v-model:value="selectTime" @panelChange="onPanelChange" />
-        <div>
-            <TimingScheduleCard  :selectTime="selectTime.format('YYYY/MM/DD dddd')">
-                
-            </TimingScheduleCard>
-            <a-float-button type="primary" @click="showModal" style="width:80px; height: 80px;"/>
-            <div class="addDates">
-                <a-modal v-model:open="open" width="400px" title="增加事項"  style="text-align: center;">
-                    <template #footer>
-                        <a-flex justify="center">
-                            <a-button key="submit" type="primary" style="background-color: #288CA3;" @click="handleOk">確定</a-button>
-                        </a-flex>
-                    </template>
-                    <a-input v-model:value="value" :bordered="false" placeholder="標題" style="font-size: large;"/>
+    <a-spin :spinning="spinning">
+        <a-space style="margin: 20px 15px 20px 40px;" align="start">
+            <a-calendar v-model:value="selectTime" @panelChange="onPanelChange">
 
-                    
-                    <!--時間-->
-                    <a-flex justify="flex-start" style="padding-top:10px ;"  >
-                        <a-divider type="vertical" style="height: 100px; background-color: #288CA3" />  
-                        <FieldTimeOutlined/>
-                        <div style="padding-left: 10px; width: 25%; text-align: left;"  >
-                            全天 :<br/>
-                            <div style="padding-top: 15px; height:10%;">開始日期 :</div><br/>
-                            <div style="padding-top: 15px; ;">結束日期 :</div>
-                        </div>
-                        <div style="padding-left: 25px; width: 75%; margin-right: 5%;"> 
-                            <a-flex justify="flex-end" vertical>
-                                <a-switch v-model:checked="checked" @click="showTime" style="margin-left: 80%;"/>
-                                <a-flex justify="flex-end"><!--開始日期-->
-                                    <a-date-picker size="small" style="margin-top: 15px; max-width: 55%;" @change="onChange" @ok="onOk" placeholder="date"></a-date-picker>                                   
-                                    <a-time-picker v-if="checked" style="margin-top: 15px; max-width:35% ; margin-left: 5px;" format="HH:mm" placeholder="time" size="small"></a-time-picker>
-                                </a-flex>
-                                <a-flex justify="flex-end"><!--結束日期-->
-                                    <a-date-picker size="small" style="margin-top: 15px; max-width: 55%;" @change="onChange" @ok="onOk" placeholder="date"></a-date-picker>                                   
-                                    <a-time-picker v-if="checked" style="margin-top: 15px; max-width:35% ; margin-left: 5px;" format="HH:mm" placeholder="time" size="small"></a-time-picker>
-                                </a-flex>
-                            </a-flex>                          
-                        </div>
-                    </a-flex>
-                    
-                    <!--標籤顏色-->
-                    <a-flex justify="flex-start" style="" >
-                        <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
-                        <TagOutlined />
-                        <div style="padding-top: 5px;padding-left: 10px ;">標籤顏色 :</div>
-                        <div style="padding-left: 56%;">
-                            <a-popover title="標籤顏色" trigger="click">
-                            <template #content>
-
-                                <a-button @click="btnColor" style="border-radius: 50%;  background-color: #FF7575;"/>
-                                <a-button   style="border-radius: 50%;  background-color: #FFBB77;"/>
-                                <a-button   style="border-radius: 50%;  background-color: #FFFF6F;"/>
-                                <a-button   style="border-radius: 50%;  background-color: #79FF79;"/>
-                                <a-button   style="border-radius: 50%;  background-color: #66B3FF;"/>
-                                <a-button   style="border-radius: 50%;  background-color: #6A6AFF;"/>
-                                <a-button   style="border-radius: 50%;  background-color: #B15BFF;"/>
-                            </template>
-                            <div style="width: 50px; height: 50px;">
-                                <a-button style="border-radius: 50%;  background-color: #FF7575; "/>
-                            </div>
-                            
-                            </a-popover>
-                        </div>
-                        
-                    </a-flex>
-                    
-                    <!--提醒-->
-                    <a-flex justify="flex-start" style="" >
-                        <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
-                        <BellOutlined />
-                        <div style="padding-top: 5px;padding-left: 10px ;">提醒 :</div>
-                    </a-flex>
-
-                    <!--群組-->
-                    <a-flex justify="flex-start" style="margin-top: 15px;" >
-                        <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
-                        <UsergroupAddOutlined />
-                        <div style="padding-top: 5px;padding-left: 10px ;">群組 :</div>
-                    </a-flex>
-                </a-modal>
-            </div>
-        </div>   
-    </a-space>   
+                <template #dateCellRender="{ current }">
+                    <ul v-if="sDate.includes(current.format('YYYY-MM-DD'))" class="events">
+                        <li>
+                            <a-badge text="期中考" />
+                        </li>
+                    </ul>
+                </template>
+            </a-calendar>
+            <TimingScheduleCard :selectTime="selectTime.format('YYYY/MM/DD dddd')" />
+        </a-space>
+    </a-spin>
 </template>
 
 <script setup>
 import TimingScheduleCard from '../components/TimingScheduleCard.vue';
 import dayjs from 'dayjs';
+import { useUserStore } from '../pinia/userStore';
+import '../mock/index'
+import { getScheduleById } from '../api/scheduleApi'
+
+const userStore = useUserStore();
+const { uId, userName } = storeToRefs(userStore);
+
+const spinning = ref(true);
+
+const Schedules = ref({});
+const sDate = ref([]);
+
+getScheduleById('2024-03-01', '2024-03-31').then((result) => {
+    Schedules.value = result.data.schedules;
+    for (let i = 0; i < Schedules.value.length; i++) {
+        sDate.value.push(Schedules.value[i].dTime)
+    }
+    spinning.value = false;
+}).catch((err) => {
+    console.log(err)
+})
+
 import { ref } from 'vue';
 import { FieldTimeOutlined,TagOutlined,BellOutlined,UsergroupAddOutlined} from '@ant-design/icons-vue';
 const selectTime = ref(dayjs());

@@ -13,7 +13,9 @@ export default defineConfig({
     ],
     imports: [
       'vue',
-      'vue-router'
+      'vue-router',
+      'vitest',
+      'pinia'
     ]
   })],
 

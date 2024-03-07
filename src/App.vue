@@ -2,9 +2,13 @@
 import Menu from './components/menu.vue';
 import { MenuUnfoldOutlined, MenuFoldOutlined, } from '@ant-design/icons-vue';
 import { router } from './router/index'
+import { useUserStore } from './pinia/userStore';
+
+const userStore = useUserStore();
+const { uId, userName } = storeToRefs(userStore);
 
 const handleClickAccount = () => {
-  router.push('/login')  
+  router.push('/account')  
 }
 
 const collapsed = ref(true);
@@ -14,11 +18,9 @@ const collapsed = ref(true);
   <a-layout style="min-height: 100vh">
     <a-layout-sider :trigger="null" :collapsedWidth="0" v-model:collapsed="collapsed" collapsible>
       <div @click="handleClickAccount" class="logo">
-        <a-space :size="large" :style="{ height: '100%', weight: '100%' }">
-          <a-avatar size="large" :style="{ backgroundColor: D2D6EF, verticalAlign: 'middle' }">
-            user
-          </a-avatar>
-          <span>前端羽毛</span>
+        <a-space size="large" :style="{ height: '100%', weight: '100%' }">
+          <a-avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1"/>
+          <span>{{ userName }}</span>
         </a-space>
       </div>
       <Menu></Menu>
@@ -40,9 +42,10 @@ const collapsed = ref(true);
 }
 
 .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
+  z-index: 1000;
+  padding-top: 15px;
+  font-size: 25px;
+  position: absolute;
   cursor: pointer;
   transition: color 0.3s;
 }
