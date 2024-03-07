@@ -1,7 +1,7 @@
 <template>
     <a-spin :spinning="spinning">
         <a-space style="margin: 20px 15px 20px 40px;" align="start">
-            <a-calendar v-model:value="selectTime" @panelChange="onPanelChange">
+            <a-calendar v-model:value="selectTime">
 
                 <template #dateCellRender="{ current }">
                     <ul v-if="sDate.includes(current.format('YYYY-MM-DD'))" class="events">
@@ -13,8 +13,8 @@
             </a-calendar>
             <TimingScheduleCard :selectTime="selectTime.format('YYYY/MM/DD dddd')" />
 
-            <a-float-button type="primary" @click="" style="width:80px; height: 80px;" />
-            <addScheduleForm ref="sForm" />
+            <a-float-button type="primary" @click="form.showModel=true" style="width:80px; height: 80px;" />
+            <addScheduleForm ref="form" />
         </a-space>
     </a-spin>
 </template>
@@ -29,7 +29,7 @@ import { getScheduleById } from '../api/scheduleApi'
 const spinning = ref(true);
 const Schedules = ref({});
 const sDate = ref([]);
-const sForm = ref(null);
+const form = ref(null);
 
 getScheduleById('2024-03-01', '2024-03-31').then((result) => {
     Schedules.value = result.data.schedules;
@@ -40,7 +40,6 @@ getScheduleById('2024-03-01', '2024-03-31').then((result) => {
 }).catch((err) => {
     console.log(err)
 })
-console.log(sForm.value)
 
 const selectTime = ref(dayjs());
 

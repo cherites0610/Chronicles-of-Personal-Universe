@@ -1,6 +1,6 @@
 <template>
     <div class="addDates">
-        <a-modal v-model:open="openModel" width="400px" title="增加事項" style="text-align: center;">
+        <a-modal v-model:open="showModel" width="400px" title="增加事項" style="text-align: center;">
 
             <template #footer>
                 <a-flex justify="center">
@@ -8,7 +8,7 @@
                         @click="handleOk">確定</a-button>
                 </a-flex>
             </template>
-            <a-input v-model:value="value" :bordered="false" placeholder="標題" style="font-size: large;" />
+            <a-input v-model:value="scheduleForm.title" :bordered="false" placeholder="標題" style="font-size: large;" />
 
 
             <!--時間-->
@@ -22,17 +22,15 @@
                 </div>
                 <div style="padding-left: 25px; width: 75%; margin-right: 5%;">
                     <a-flex justify="flex-end" vertical>
-                        <a-switch v-model:checked="checked" @click="showTime" style="margin-left: 80%;" />
+                        <a-switch v-model:checked="checked" style="margin-left: 80%;" />
                         <a-flex justify="flex-end"><!--開始日期-->
-                            <a-date-picker size="small" style="margin-top: 15px; max-width: 55%;" @change="onChange"
-                                @ok="onOk" placeholder="date"></a-date-picker>
-                            <a-time-picker v-if="checked" style="margin-top: 15px; max-width:35% ; margin-left: 5px;"
+                            <a-date-picker v-model:value="scheduleForm.startDate" size="small" value-format='YYYY-MM-DD' style="margin-top: 15px; max-width: 55%;" placeholder="date" />
+                            <a-time-picker v-model:value="scheduleForm.startTime" v-if="checked" value-format="HH:mm:ss" style="margin-top: 15px; max-width:35% ; margin-left: 5px;"
                                 format="HH:mm" placeholder="time" size="small"></a-time-picker>
                         </a-flex>
                         <a-flex justify="flex-end"><!--結束日期-->
-                            <a-date-picker size="small" style="margin-top: 15px; max-width: 55%;" @change="onChange"
-                                @ok="onOk" placeholder="date"></a-date-picker>
-                            <a-time-picker v-if="checked" style="margin-top: 15px; max-width:35% ; margin-left: 5px;"
+                            <a-date-picker v-model:value="scheduleForm.endDate" value-format='YYYY-MM-DD' size="small" style="margin-top: 15px; max-width: 55%;" placeholder="date" />
+                            <a-time-picker v-model:value="scheduleForm.endTime" v-if="checked" value-format="HH:mm:ss" style="margin-top: 15px; max-width:35% ; margin-left: 5px;"
                                 format="HH:mm" placeholder="time" size="small"></a-time-picker>
                         </a-flex>
                     </a-flex>
@@ -84,24 +82,23 @@
 </template>
 
 <script setup>
-//偵測整天開關動作
-const showTime = () => {
-    if (checked.value == false) { console.log("關" + checked.value); }
-    else { console.log("開" + checked.value); }
-}
+import { UsergroupAddOutlined, BellOutlined, TagOutlined, FieldTimeOutlined } from '@ant-design/icons-vue'
+
+const scheduleForm = ref({
+
+})
 
 //讓全天鈕可以動(disabled=true時會鎖定)
 const checked = ref(false);
 
-//以下是在做增加
-const openModel = ref(true);
+const showModel = ref(false);
 
 const handleOk = e => { //點開來後確定
-    openModel.value = false;
+    showModel.value = false;
 };
 
 defineExpose({
-    openModel
+    showModel
 })
 </script>
 
