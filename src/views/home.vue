@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import TimingScheduleCard from '../components/TimingScheduleCard.vue';
+import TimingScheduleCard from '../components/TimeScheduleCard.vue';
 import addScheduleForm from '../components/addScheduleForm.vue'
 import dayjs from 'dayjs';
 import '../mock/index'

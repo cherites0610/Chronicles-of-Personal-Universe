@@ -14,9 +14,9 @@ const routes = [
   { path: '/login', component: login },
   { path: '/register', component: register },
   { path: '/login', component: login },
-  { path: '/checkList', component: checkList},
-  { path: '/diary', component:diary},
-  
+  { path: '/checkList', component: checkList, meta: { needLogin: true } },
+  { path: '/diary', component: diary, meta: { needLogin: true } },
+
 ]
 
 export const router = createRouter({
