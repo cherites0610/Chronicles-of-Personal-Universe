@@ -5,12 +5,20 @@
       <span>主界面</span>
     </a-menu-item>
     <a-menu-item key="checkList">
-      <MailOutlined />
+      <ScheduleOutlined />
       <span>待辦清單</span>
     </a-menu-item>
+    <a-menu-item key="group">
+      <GatewayOutlined />
+      <span>群組</span>
+    </a-menu-item>
     <a-menu-item key="diary">
-      <MailOutlined />
+      <FileTextOutlined />
       <span>筆記本</span>
+    </a-menu-item>
+    <a-menu-item key="wordToUniverse">
+      <CommentOutlined />
+      <span>給宇宙的話</span>
     </a-menu-item>
     <a-menu-item key="login">
       <PieChartOutlined />
@@ -21,7 +29,7 @@
 
 <script setup>
 import { router } from '../router/index'
-import { HomeOutlined, PieChartOutlined, MailOutlined, } from '@ant-design/icons-vue';
+import { HomeOutlined, PieChartOutlined, FileTextOutlined, CommentOutlined,ScheduleOutlined,GatewayOutlined } from '@ant-design/icons-vue';
 
 const selectedKeys = ref(['home'])
 

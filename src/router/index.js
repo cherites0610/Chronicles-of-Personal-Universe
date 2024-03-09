@@ -5,6 +5,8 @@ import register from '../views/register.vue';
 import account from '../views/account.vue';
 import checkList from "../views/checkList.vue";
 import diary from '../views/diary.vue';
+import wordToUniverse from "../views/wordToUniverse.vue";
+import group from '../views/group.vue';
 import { message } from 'ant-design-vue';
 import Cookies from 'js-cookie'
 
@@ -16,6 +18,8 @@ const routes = [
   { path: '/login', component: login },
   { path: '/checkList', component: checkList, meta: { needLogin: true } },
   { path: '/diary', component: diary, meta: { needLogin: true } },
+  { path: '/wordToUniverse', component: wordToUniverse, meta: { needLogin: true } },
+  { path: '/group', component: group, meta: { needLogin: true } }
 
 ]
 
