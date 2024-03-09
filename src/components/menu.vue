@@ -12,6 +12,14 @@
       <MailOutlined />
       <span>註冊</span>
     </a-menu-item>
+    <a-menu-item key="checkList">
+      <MailOutlined />
+      <span>待辦清單</span>
+    </a-menu-item>
+    <a-menu-item key="diary">
+      <MailOutlined />
+      <span>筆記本</span>
+    </a-menu-item>
   </a-menu>
 </template>
 
