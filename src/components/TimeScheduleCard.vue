@@ -4,20 +4,20 @@
             <a-space style="width:100%" direction="vertical" align="center">{{ props.selectTime }}</a-space>
         </template>
 
-        <ScheduleRect />
-
         <a-row class="container" :gutter="10" v-for="key of array " :key="key">
             <a-col :class="{ mainText: (key % 3) === 0, secondaryText: (key % 3) !== 0 }">
-                {{ key }}
+                <span class="text">{{ key }}</span>
             </a-col>
 
             <a-col :class="{ mainArea: (key % 3) === 0, secondaryArea: (key % 3) !== 0 }" :span="20">
-                
+
             </a-col>
         </a-row>
 
-        <ScheduleRect v-for="key in schedules.length" style="position: absolute;top: 26px;height: 50px;"
-                    :name="schedules[0].sName" :startTime="schedules[0].startTime" :endTime="schedules[0].endTime" />
+        <ScheduleRect v-for="(key, index) in schedules.length"
+            :height="timeRange(schedules[index].startTime, schedules[index].endTime)"
+            :top="rectHeight(schedules[index].startTime)" :name="schedules[index].sName"
+            :startTime="schedules[index].startTime" :endTime="schedules[index].endTime" />
     </a-card>
 </template>
 
@@ -28,17 +28,29 @@ const props = defineProps(['selectTime']);
 const array = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
 
 const schedules = [
-    {
+{
         sName: '期中考',
         startTime: '10:00',
-        endTime: '12:00',
+        endTime: '13:00',
         color: '#8B80F9',
     }
 ]
 
-const timeRange = () => {
-    
+const rectHeight = (startTime) => {
+    const startTimeList = startTime.split(':');
+    const minuteDiffenence = (Number(startTimeList[1]) / 60);
+    return ((Number(startTimeList[0]) + Number(minuteDiffenence) - 6) * 30 + 95) + 'px'
 }
+
+const timeRange = (startTime, endTime) => {
+    const startTimeList = startTime.split(':');
+    const endTimeList = endTime.split(':');
+    const hourDifference = Number(endTimeList[0] - startTimeList[0]);
+    const minuteDiffenence = Math.abs(endTimeList[1] - startTimeList[1]) / 60;
+    const total = ((hourDifference + minuteDiffenence) * 30)
+    return total + 'px';
+}
+console.log(timeRange('10:15', '13:00') * 30)
 </script>
 
 <style lang="scss" scoped>
@@ -54,25 +66,28 @@ const timeRange = () => {
         left: 50%;
         width: 100%;
         height: 0.5px;
+        z-index: 500;
         background-color: black;
         transform: translate(-50%, -50%);
     }
 }
 
-.secondaryArea {
-    // background-color:antiquewhite;
-}
-
 .mainText {
     width: 30px;
-    text-align: center;
     font-size: large;
 }
 
 .secondaryText {
     width: 30px;
     font-size: small;
-    text-align: center;
     color: thistle;
+}
+
+.text {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 </style>
