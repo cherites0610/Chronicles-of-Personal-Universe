@@ -1,11 +1,11 @@
 <template>
     <div>
-        群組
+        <addGroup/>
     </div>
 </template>
 
 <script setup>
-
+    import addGroup from '../components/addGroup.vue';
 </script>
 
 <style lang="scss" scoped>
