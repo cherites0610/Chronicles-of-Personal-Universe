@@ -6,14 +6,15 @@
                 <template #dateCellRender="{ current }">
                     <ul v-if="sDate.includes(current.format('YYYY-MM-DD'))" class="events">
                         <li>
-                            <a-badge text="期中考" />
+                            <a-badge :text="Schedules[sDate.indexOf(current.format('YYYY-MM-DD'))].sName"
+                                :color="Schedules[sDate.indexOf(current.format('YYYY-MM-DD'))].color" />
                         </li>
                     </ul>
                 </template>
             </a-calendar>
             <TimingScheduleCard :selectTime="selectTime.format('YYYY/MM/DD dddd')" />
 
-            <a-float-button type="primary" @click="form.showModel=true" style="width:80px; height: 80px;" />
+            <a-float-button type="primary" @click="form.showModel = true" style="width:80px; height: 80px;" />
             <addScheduleForm ref="form" />
         </a-space>
     </a-spin>
@@ -37,6 +38,7 @@ getScheduleById('2024-03-01', '2024-03-31').then((result) => {
         sDate.value.push(Schedules.value[i].dTime)
     }
     spinning.value = false;
+    console.log(Schedules.value)
 }).catch((err) => {
     console.log(err)
 })
@@ -45,6 +47,10 @@ const selectTime = ref(dayjs());
 </script>
 
 <style lang="scss" scoped>
+.events{
+    list-style-type: none
+}
+
 .ant-picker-calendar {
     margin: 0px 10px 10px 10px;
     padding: 0px 12px;
