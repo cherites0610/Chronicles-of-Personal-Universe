@@ -14,7 +14,7 @@
                   <a-form-item label="群組名稱">
                     <a-input v-model:value="addGroupp.groupName"></a-input>
                   </a-form-item>
-                  <a-form-item label="群組代碼">
+                  <a-form-item label="群組成員">
                     <a-input v-model:value="addGroupp.groupNumber"></a-input>
                   </a-form-item>
                 </a-form>
@@ -24,7 +24,7 @@
         
         <a-float-button type="defult" @click="joinGroup" style="width:80px; height: 80px; right: 120px;"/>
         <div>
-            <a-modal v-model:open="joing" width="400px" title="新增群組"  style="text-align: center;">
+            <a-modal v-model:open="joing" width="400px" title="加入群組"  style="text-align: center;">
                 <template #footer>
                     <a-flex justify="center">
                         <a-button key="submit" type="primary" style="background-color: #288CA3;" @click="handleOk">確定</a-button>
@@ -57,8 +57,8 @@ const handleOk=()=>{
    console.log("群組代碼="+addGroupp.groupNumber); 
 }
 const addGroupp=reactive({
-    groupName:'',
-    groupNumber:''
+    groupName:'111',
+    groupNumber:'222'
 });
 
 //加入群組
