@@ -8,6 +8,7 @@ Mock.mock('/api/login', 'post',
     {
         "name": '@cname',
         "uId": 1,
+        "uEmail": '@email',
         "userPicture": 1
     }
 )

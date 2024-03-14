@@ -57,7 +57,7 @@ import { notification, message } from 'ant-design-vue';
 import { useUserStore } from '../pinia/userStore';
 
 const userStore = useUserStore();
-const { uId, userName } = storeToRefs(userStore);
+const { uId, userName, userEmail } = storeToRefs(userStore);
 
 const loginForm = ref({
     username: '',
@@ -68,17 +68,12 @@ const loginForm = ref({
 const handleLogin = values => {
     login('test', 'test').then((res) => {
         if (!(values.username == 'admin')) {
-            sessionStorage.setItem('user', JSON.stringify({
-                'userToken': '123',
-                'userName': values.userName,
-                'uId': values.uId
-            }));
-
             Cookies.set('token', 'test', { expires: 1 })
-            
+
 
             userName.value = res.data.name;
             uId.value = res.data.uId;
+            userEmail.value = res.data.uEmail;
 
             notification.open({
                 placement: 'bottomLeft',
@@ -144,7 +139,7 @@ const handleRouterRegister = () => {
     font-size: 15px;
 }
 
-.chkBox{
+.chkBox {
     padding-left: 10px;
 
 }

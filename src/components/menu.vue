@@ -6,7 +6,7 @@
     </a-menu-item>
     <a-menu-item key="checkList">
       <ScheduleOutlined />
-      <span>待辦清單</span>
+      <span>記錄本</span>
     </a-menu-item>
     <a-menu-item key="group">
       <GatewayOutlined />
@@ -22,7 +22,7 @@
     </a-menu-item>
     <a-menu-item key="login">
       <PieChartOutlined />
-      <span>登錄</span>
+      <span>登錄(方便測試用)</span>
     </a-menu-item>
   </a-menu>
 </template>

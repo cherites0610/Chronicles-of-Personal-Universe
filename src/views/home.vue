@@ -38,7 +38,6 @@ getScheduleById('2024-03-01', '2024-03-31').then((result) => {
         sDate.value.push(Schedules.value[i].dTime)
     }
     spinning.value = false;
-    console.log(Schedules.value)
 }).catch((err) => {
     console.log(err)
 })

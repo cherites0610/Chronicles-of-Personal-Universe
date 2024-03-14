@@ -1,30 +1,29 @@
 <template>
     <div style="width: 100px;height: 100px;"></div>
     <a-card :bordered="false" style="width: 350px " class="shape">
-        <div style="display: flex; justify-content: center;">
-                <a-avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" style=""/>
+        <div style="display: flex; justify-content: center;" size="large">
+            <a-avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" style="" />
         </div>
-        
+
         <a-form :model="loginForm" name="basic">
             <a-form-item label="帳號">
-                {{ userName }}
+                {{ uId }}
             </a-form-item>
             <a-form-item label="暱稱">
-                {{ uId }}
+                {{ userName }}
             </a-form-item>
             <a-form-item label="信箱">
                 {{ userEmail }}
             </a-form-item>
             <a-form-item label="密碼">
-                {{ uId }}
+                ***********
             </a-form-item>
         </a-form>
-
+        <a-flex justify="center">
+            <a-button @click="handleLogout">登出</a-button>
+        </a-flex>
     </a-card>
-    <br/>
-    <span>使用者編號:{{ uId }}</span>
-    <br/>
-    <a-button @click="handleLogout">登出</a-button>
+
 </template>
 
 <script setup>
@@ -33,20 +32,20 @@ import { useUserStore } from '../pinia/userStore';
 import { router } from '../router/index'
 
 const userStore = useUserStore();
-const { uId, userName,userEmail } = storeToRefs(userStore);
+const { uId, userName, userEmail } = storeToRefs(userStore);
 
 const handleLogout = () => {
     Cookie.remove('token')
-    uId.value=-1;
-    userName.value='未登入';
+    uId.value = -1;
+    userName.value = '未登入';
     router.push('/login');
 }
 
 const loginForm = ref({
     username: '',
-    nyckname:'', //暱稱
+    nyckname: '', //暱稱
     password: '',
-    email:'',
+    email: '',
     remember: true,
 })
 </script>

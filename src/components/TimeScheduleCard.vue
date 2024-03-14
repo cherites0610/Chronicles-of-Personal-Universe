@@ -50,7 +50,7 @@ const timeRange = (startTime, endTime) => {
     const total = ((hourDifference + minuteDiffenence) * 30)
     return total + 'px';
 }
-console.log(timeRange('10:15', '13:00') * 30)
+
 </script>
 
 <style lang="scss" scoped>
