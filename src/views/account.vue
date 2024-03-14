@@ -9,7 +9,15 @@
             <a-form-item label="帳號">
                 {{ userName }}
             </a-form-item>
-            
+            <a-form-item label="暱稱">
+                {{ uId }}
+            </a-form-item>
+            <a-form-item label="信箱">
+                {{ userEmail }}
+            </a-form-item>
+            <a-form-item label="密碼">
+                {{ uId }}
+            </a-form-item>
         </a-form>
 
     </a-card>
@@ -25,7 +33,7 @@ import { useUserStore } from '../pinia/userStore';
 import { router } from '../router/index'
 
 const userStore = useUserStore();
-const { uId, userName } = storeToRefs(userStore);
+const { uId, userName,userEmail } = storeToRefs(userStore);
 
 const handleLogout = () => {
     Cookie.remove('token')
