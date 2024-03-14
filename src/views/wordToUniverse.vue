@@ -47,7 +47,7 @@ const formState = ref({
 const comments = [
     {
         year: 2023,
-        comment: '我也不知道羽毛要說怎麼，但反正我就隨便亂打，你們就隨便亂看'
+        comment: '我也不知道大哥要說怎麼，但反正我就隨便亂打，你們就隨便亂看'
     },
     {
         year: 2024,
