@@ -1,12 +1,12 @@
 <template>
     <a-spin :spinning="spinning">
         <a-space style="margin: 20px 15px 20px 40px;" align="start">
-            <a-calendar @panelChange="onPanelChange" v-model:value="selectTime" >
-                <template #dateFullCellRender="{ current }">
+            <a-calendar @panelChange="onPanelChange" v-model:value="selectTime"> <!--日曆外框(?)-->
+                <template #dateFullCellRender="{ current }" >
                     <div @click="handleClick(current)" :data-id="current.format('MM-DD')" class="dateCell">
-                        <span>{{ current.format('DD') }}</span>
+                        <span style="font-size: large; margin-right: 10px; padding-right: 5px;">{{ current.format('DD') }}</span> <!--格子內數字-->
                         <ul v-if="sDate.includes(current.format('YYYY-MM-DD'))" class="events">
-                            <li>
+                            <li style="text-align: left; padding-left: 10px;"> <!--事件靠左-->
                                 <a-badge :text="Schedules[sDate.indexOf(current.format('YYYY-MM-DD'))].sName"
                                     :color="Schedules[sDate.indexOf(current.format('YYYY-MM-DD'))].color" />
                             </li>
@@ -52,11 +52,14 @@ getScheduleById('2024-03-01', '2024-03-31').then((result) => {
 const handleClick = (day) => {
     if (lastSelect.value) {
         lastSelect.value.style.backgroundColor = ''
+        lastSelect.value.style.color = ''
     }
 
     let temp = '[data-id="' + day.format("MM-DD") + '"]'
-    var item = document.querySelector(temp);
-    item.style.backgroundColor = 'red'
+    var item = document.querySelector(temp).querySelector("span");
+    item.style.backgroundColor = '#288CA3' //點擊後背景色
+    item.style.borderRadius = '50%'; //圓形背景
+    item.style.color = 'white' //文字顏色
     lastSelect.value = item
 }
 
@@ -73,11 +76,11 @@ const selectTime = ref(dayjs());
 .dateCell {
     height: 12.5vh;
     width: auto;
-    border: 1px solid black;
+    border: 1px solid rgb(248, 248, 248); //框框顏色
 }
 
 .dateCell:hover {
-    background-color: bisque;
+    background-color: rgb(213, 233, 253); //滑鼠移動到日曆上的顏色
 }
 
 .ant-picker-calendar {
@@ -91,5 +94,13 @@ const selectTime = ref(dayjs());
 
 :where(.css-dev-only-do-not-override-1hsjdkk).ant-picker-calendar.ant-picker-calendar-full .ant-picker-calendar-date-content {
     height: 50px !important;
+}
+
+.dateSetting{
+    background-color: rgb(117, 29, 114);
+}
+
+.colorText{
+    background-color: rgb(164, 222, 235);
 }
 </style>
