@@ -1,57 +1,36 @@
 <template>
-    <div>
-        <div v-if="!isEmpty" id="container">
-        <a-card hoverable @click="handleClick(index)" :title="key.groupName" v-for="(key, index) in comments" class="rect">
-            <a-typography-paragraph :ellipsis="true" :content="key.groupNumber" />
-        </a-card>
+    <a-float-button type="primary" @click="modalShow = true" style="position: absolute;width:80px; height: 80px;" />
 
-    </div>
+    <div>
+        <a-modal v-model:open="modalShow" :footer="null" width="400px" title="增加群組" style="text-align: center;">
+
+
+            <a-form :model="addGroupp">
+                <a-form-item label="群組名稱">
+                    <a-input v-model:value="addGroupp.groupName"></a-input>
+                </a-form-item>
+                <a-form-item label="群組成員">
+                    <a-input v-model:value="addGroupp.groupNumber"></a-input>
+                </a-form-item>
+                <a-form-item>
+                    <a-flex justify="center">
+                        <a-button key="submit" type="primary" style="background-color: #288CA3;"
+                            @click="handleOk">確定</a-button>
+                    </a-flex>
+                </a-form-item>
+            </a-form>
+
+        </a-modal>
     </div>
 </template>
 
 <script setup>
+const modalShow = ref(false)
 
-    const comments = [
-    {
-        groupName: '專研組',
-        groupNumber: '1548832112'
-        
-    },
-    {
-        groupName: '朋友',
-        groupNumber: '1515151223'
-    },
-    {
-        groupName: '家人',
-        groupNumber: '1543584265'
-    }
-    ]
-
-    const handleClick = (index) => {
-    
-    }
-
+const addGroupp = ref({
+    groupName: 'test',
+    groupNumber: 'test'
+})
 </script>
 
-<style lang="scss" scoped>
-#title {
-    font-size: 30px;
-    position: relative;
-    top: 10px;
-    left: 30px
-}
-
-#container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 3% 25px 10% 50px;
-}
-
-.rect {
-    padding: 7px;
-    margin: 20px;
-    width: 43%;
-}
-</style>
+<style lang="scss" scoped></style>
