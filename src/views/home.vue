@@ -14,6 +14,7 @@
                     </div>
                 </template>
             </a-calendar>
+            
             <TimingScheduleCard :selectTime="selectTime.format('YYYY/MM/DD dddd')" />
 
             <a-float-button type="primary" @click="form.showModel = true" style="width:80px; height: 80px;" />
@@ -60,6 +61,7 @@ const handleClick = (day) => {
     item.style.backgroundColor = '#288CA3' //點擊後背景色
     item.style.borderRadius = '50%'; //圓形背景
     item.style.color = 'white' //文字顏色
+    item.style.padding='0px 3px 2px 3px' //調整圓圈到文字的距離 上右下左
     lastSelect.value = item
 }
 
