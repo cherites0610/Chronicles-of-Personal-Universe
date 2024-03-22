@@ -1,29 +1,49 @@
 <template>
     <a-spin :spinning="spinning">
         <a-space style="margin: 20px 15px 20px 40px;" align="start">
-            <a-calendar @change="change" @panelChange="onPanelChange" v-model:value="selectTime"> <!--日曆外框(?)-->
+            <a-calendar @select="change" @panelChange="onPanelChange" v-model:value="selectTime"> <!--日曆外框(?)-->
                 <template #headerRender="{ value: current, type, onChange, onTypeChange }">
                     <a-flex justify="space-around" style="padding: 10px 0px;">
-                        <a-button @click="onChange(current.subtract(1,'month'))">上月</a-button>
+                        <a-button @click="onChange(current.subtract(1, 'month'))">上月</a-button>
+                        <a-button @click="onChange(current.add(1, 'month'))">下月</a-button>
                         <span style="font-size: larger;">{{ current.format('YYYY-MM-DD') }}</span>
-                        <a-button @click="onChange(current.add(1,'month'))">下月</a-button>
+                        <a-select size="small" :dropdown-match-select-width="false" class="my-year-select"
+                            :value="String(current.year())" @change="newYear => {
+        onChange(current.year(+newYear));
+    }
+        ">
+                            <a-select-option v-for="val in getYears(current)" :key="String(val)" class="year-item">
+                                {{ val }}
+                            </a-select-option>
+                        </a-select>
+                        <a-select size="small" :dropdown-match-select-width="false" :value="String(current.month())"
+                            @change="selectedMonth => {
+        onChange(current.month(parseInt(String(selectedMonth), 10)));
+    }
+        ">
+                            <a-select-option v-for="(val, index) in getMonths(current)" :key="String(index)"
+                                class="month-item">
+                                {{ val }}
+                            </a-select-option>
+                        </a-select>
                     </a-flex>
                 </template>
-                
-                <template #dateFullCellRender="{ current }" >
+
+                <template #dateFullCellRender="{ current }">
                     <div :data-id="current.format('YYYY-MM-DD')" class="dateCell">
-                        <span style="font-size: large; margin-right: 10px; padding-right: 5px;">{{ current.format('DD') }}</span> <!--格子內數字-->
+                        <span style="font-size: large; margin-right: 10px; padding-right: 5px;">{{ current.format('DD')}}</span> <!--格子內數字-->
                         <ul v-if="sDate.includes(current.format('YYYY-MM-DD'))" class="events">
                             <li style="text-align: left; padding-left: 10px;"> <!--事件靠左-->
-                                <a-badge :text="Schedules[sDate.indexOf(current.format('YYYY-MM-DD'))].sName"
-                                    :color="Schedules[sDate.indexOf(current.format('YYYY-MM-DD'))].color" />
+                                <a-badge
+                                    v-for="(key, index) in Schedules.filter((item) => item.dTime == current.format('YYYY-MM-DD'))"
+                                    :text="key.sName" :color="key.color" />
                             </li>
                         </ul>
                     </div>
                 </template>
             </a-calendar>
-            
-            <TimingScheduleCard :selectTime="selectTime.format('YYYY/MM/DD dddd')" />
+
+            <TimingScheduleCard :Schedules="selectSchedlues" :selectTime="selectTime" />
 
             <a-float-button type="primary" @click="form.showModel = true" style="width:80px; height: 80px;" />
             <addScheduleForm ref="form" />
@@ -38,6 +58,8 @@ import dayjs from 'dayjs';
 import '../mock/index'
 import { getScheduleById } from '../api/scheduleApi'
 
+const selectTime = ref();
+const selectSchedlues = ref([])
 const spinning = ref(true);
 const Schedules = ref({});
 const sDate = ref([]);
@@ -60,21 +82,40 @@ const change = (day) => {
     item.style.backgroundColor = '#288CA3' //點擊後背景色
     item.style.borderRadius = '50%'; //圓形背景
     item.style.color = 'white' //文字顏色
-    item.style.padding='0px 3px 2px 3px' //調整圓圈到文字的距離 上右下左
+    item.style.padding = '0px 3px 2px 3px' //調整圓圈到文字的距離 上右下左
     lastSelect.value = item
+
+    selectSchedlues.value = Schedules.value.filter((schedule) => {
+        return schedule.dTime == (day.format('YYYY-MM-DD'))
+    })
 }
 
 getScheduleById('2024-03-01', '2024-03-31').then((result) => {
     Schedules.value = result.data.schedules;
-    for (let i = 0; i < Schedules.value.length; i++) {
-        sDate.value.push(Schedules.value[i].dTime)
-    }
+    sDate.value = Schedules.value.map((x) => { return x.dTime })
     spinning.value = false;
+    selectTime.value = dayjs();
 }).catch((err) => {
     console.log(err)
 })
 
-const selectTime = ref(dayjs());
+const getMonths = value => {
+    const localeData = value.localeData();
+    const months = [];
+    for (let i = 0; i < 12; i++) {
+        months.push(localeData.monthsShort(value.month(i)));
+    }
+    return months;
+};
+const getYears = value => {
+    const year = value.year();
+    const years = [];
+    for (let i = year - 10; i < year + 10; i += 1) {
+        years.push(i);
+    }
+    return years;
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -107,11 +148,11 @@ const selectTime = ref(dayjs());
     height: 50px !important;
 }
 
-.dateSetting{
+.dateSetting {
     background-color: rgb(117, 29, 114);
 }
 
-.colorText{
+.colorText {
     background-color: rgb(164, 222, 235);
 }
 </style>

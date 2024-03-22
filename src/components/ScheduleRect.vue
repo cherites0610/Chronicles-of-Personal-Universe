@@ -6,13 +6,13 @@
 </template>
 
 <script setup>
-const props = defineProps(['name','startTime','endTime','top','height'])
+const props = defineProps(['name','startTime','endTime','top','height','yIndex','color'])
 </script>
 
 <style lang="scss" scoped>
 #container{
     position: absolute;
-    left: 50px;
+    left: v-bind('yIndex');
     top: v-bind('props.top');
     display: flex;
     width: 20%;
@@ -21,7 +21,7 @@ const props = defineProps(['name','startTime','endTime','top','height'])
 #rect {
     width: 10%;
     height: v-bind('props.height');
-    background-color: #8B80F9;
+    background-color: v-bind('props.color');
     border-radius: 5%;
 }
 </style>

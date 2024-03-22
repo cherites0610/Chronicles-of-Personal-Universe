@@ -1,7 +1,7 @@
 import Mock from "mockjs";
 
 Mock.setup({
-    timeout: 500
+    timeout: 400
 })
 
 Mock.mock('/api/login', 'post',

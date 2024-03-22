@@ -14,25 +14,27 @@
             </a-col>
         </a-row>
 
-        <ScheduleRect v-for="(key, index) in schedules.length"
-            :height="timeRange(schedules[index].startTime, schedules[index].endTime)"
-            :top="rectHeight(schedules[index].startTime)" :name="schedules[index].sName"
-            :startTime="schedules[index].startTime" :endTime="schedules[index].endTime" />
+        <ScheduleRect v-for="(key, index) in props.Schedules.length"
+            :height="timeRange(props.Schedules[index].startTime, props.Schedules[index].endTime)"
+            :top="rectHeight(props.Schedules[index].startTime)" :name="props.Schedules[index].sName"
+            :startTime="props.Schedules[index].startTime" :endTime="props.Schedules[index].endTime"
+            :yIndex="(props.Schedules[index].y_index*50)+'px'" :color="props.Schedules[index].color" />
     </a-card>
 </template>
 
 <script setup>
 import ScheduleRect from './ScheduleRect.vue';
-const props = defineProps(['selectTime']);
+const props = defineProps(['selectTime','Schedules']);
 
 const array = [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
 
-const schedules = [
+const temp = [
 {
         sName: '期中考',
         startTime: '10:00',
         endTime: '13:00',
         color: '#8B80F9',
+        y_index: 0
     }
 ]
 
