@@ -67,13 +67,13 @@
                     <UsergroupAddOutlined />
                     <div style="padding-top: 5px;padding-left: 10px ;">群組 :</div>
 
-                    <a-select v-model:value="Form.group" style="width: 70%;margin-left: 5%;" mode="multiple"
+                    <a-select  v-model:value="Form.group" style="width: 70%;margin-left: 5%;" mode="multiple"
                         placeholder="群組" :options="groups"></a-select>
 
                 </a-flex>
 
                 <!--標籤顏色-->
-                <a-flex justify="flex-start" style="">
+                <a-flex justify="flex-start" style="margin-top: 15px;">
                     <a-divider type="vertical" style="height: 30px; background-color: #288CA3" />
                     <TagOutlined />
                     <div style="padding-top: 5px;padding-left: 10px ;">標籤顏色 :</div>
