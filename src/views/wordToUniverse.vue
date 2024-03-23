@@ -1,13 +1,17 @@
 <template>
     <span id="title">給宇宙的話</span>
-
     <a-spin :spinning="spinning" size="large">
-        <contentCard v-for="(key, index) in comments">
-            <h3>
-                {{ key.year }}
-            </h3>
-            <a-typography-paragraph :ellipsis="{rows:4}" :content="key.comment" />
+        <div>
+            <contentCard v-for="(key, index) in comments" >
+                <div>
+                    <h3 style="padding-top: 5px; padding-left: 10px;">
+                        {{ key.year }}
+                    </h3>
+                     <a-typography-paragraph :ellipsis="{rows:4}" :content="key.comment" style="padding-left: 10px; padding-right: 10px;"/>
+                </div>          
         </contentCard>
+        </div>
+        
     </a-spin>
 
     <a-float-button type="primary" @click="formState.isNew = true, showModel = true"

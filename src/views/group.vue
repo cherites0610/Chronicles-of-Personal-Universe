@@ -1,8 +1,11 @@
 <template>
-    <a-spin :spinning="spinning" size="large">
+    <span id="title">群組</span>
+    <a-spin :spinning="spinning" size="large" >
         <div>
             <contentCard v-for="(key, index) in groups">
-                {{ key }}
+                <div style="padding-left: 10px; padding-top: 10px;">
+                   {{ key }} 
+                </div>                
             </contentCard>
 
             <addGroup />
@@ -27,4 +30,11 @@ getGroupsById(1).then((result) => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+ #title {
+    font-size: 30px;
+    position: relative;
+    top: 10px;
+    left: 30px
+}
+</style>
