@@ -1,14 +1,14 @@
 <template>
-    <a-spin :spinning="spinning" size="large">
+    <a-spin wrapperClassName="temp" :spinning="spinning" size="large" style="height: 100%;">
         <div>
             <contentCard v-for="(key, index) in groups">
                 {{ key }}
             </contentCard>
-
-            <addGroup />
-            <joinGroup />
         </div>
     </a-spin>
+
+    <addGroup />
+    <joinGroup />
 </template>
 
 <script setup>
@@ -27,4 +27,9 @@ getGroupsById(1).then((result) => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:where(.css-dev-only-do-not-override-1hsjdkk).ant-spin-nested-loading {
+    height: 100%;
+    position: relative;
+}
+</style>

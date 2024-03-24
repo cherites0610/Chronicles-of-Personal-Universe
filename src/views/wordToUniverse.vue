@@ -22,14 +22,14 @@
             </a-form-item>
             <a-form-item>
                 <a-flex justify="center">
-                    <a-button key="submit" type="primary" style="background-color: #288CA3;">確定</a-button>
+                    <a-button key="submit" @click="showCreatModel=false" type="primary" style="background-color: #288CA3;">確定</a-button>
                 </a-flex>
             </a-form-item>
         </a-form>
     </a-modal>
 
-    <a-modal :title="editState.year" @handleOk="showEditModel=false" v-model:open="showEditModel">
-        <a-typography-paragraph v-model:content="editState.comment" :editable="editState.year!=Number(dayjs().format('YYYY'))" />
+    <a-modal :title="editState.year" @ok="showEditModel=false" v-model:open="showEditModel">
+        <a-typography-paragraph v-model:content="editState.comment" :editable="editState.year==Number(dayjs().format('YYYY'))" />
     </a-modal>
 
     <div>
@@ -97,4 +97,5 @@ const modalCancel = () => {
     margin: 20px;
     width: 43%;
 }
+
 </style>
