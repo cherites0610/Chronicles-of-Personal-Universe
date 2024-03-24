@@ -2,7 +2,7 @@
     <span id="title">給宇宙的話</span>
     <a-spin :spinning="spinning" size="large">
         <div>
-            <contentCard v-for="(key, index) in comments" >
+            <contentCard @clickCard="handleCardClick(index)" v-for="(key, index) in comments" >
                 <div>
                     <h3 style="padding-top: 5px; padding-left: 10px;">
                         {{ key.year }}

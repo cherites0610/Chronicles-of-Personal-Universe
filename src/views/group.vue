@@ -31,16 +31,15 @@ getGroupsById(1).then((result) => {
 </script>
 
 <style lang="scss" scoped>
-<<<<<<< HEAD
 :where(.css-dev-only-do-not-override-1hsjdkk).ant-spin-nested-loading {
     height: 100%;
     position: relative;
-=======
+}
+
  #title { //改標題
     font-size: 30px;
     position: relative;
     top: 10px;
     left: 30px
->>>>>>> c51311383934be7ca54e3cef5946f604a304380b
 }
 </style>
