@@ -11,6 +11,6 @@
     font-size: 30px;
     position: relative;
     top: 10px;
-    left: 30px
+    left: 30px;
 }
 </style>

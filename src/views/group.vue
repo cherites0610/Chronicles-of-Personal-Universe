@@ -31,7 +31,7 @@ getGroupsById(1).then((result) => {
 </script>
 
 <style lang="scss" scoped>
- #title {
+ #title { //改標題
     font-size: 30px;
     position: relative;
     top: 10px;
