@@ -1,8 +1,11 @@
 <template>
+    <span id="title">筆記本</span>
     <a-spin :spinning="spinning">
-        <div id="content">
+        <div>
             <contentCard @clickCard="handleClick" v-for="(key,index) in groups">
-                {{ key }}
+                <div style="padding-top: 10px; padding-left: 10px;">
+                    {{ key }}
+                </div>                
             </contentCard>
         </div>
     </a-spin>
@@ -27,7 +30,10 @@ const handleClick = () => {
 </script>
 
 <style lang="scss" scoped>
-#content {
-    margin-top: 75px;
+#title {
+    font-size: 30px;
+    position: relative;
+    top: 10px;
+    left: 30px
 }
 </style>

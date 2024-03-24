@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import { codeInspectorPlugin } from 'code-inspector-plugin';
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
@@ -17,7 +18,11 @@ export default defineConfig({
       'vitest',
       'pinia'
     ]
-  })],
+  }), 
+  codeInspectorPlugin({
+    bundler: 'vite',
+  })
+],
 
   server: {
     host: '0.0.0.0'
