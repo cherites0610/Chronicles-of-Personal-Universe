@@ -1,5 +1,5 @@
 <template>
-    <div style="">
+    <div class="container-center">
     <a-row>
         <a-col :span="10" style="padding-top:30px; padding-left: 30px;">   
             <a-card hoverable size="large" title="⚝ 重要且緊急"  style="background-color: #FFDCDC;">
@@ -63,8 +63,5 @@
 </script>
 
 <style lang="scss" scoped>
-#card{
-    height: 100px;
-    background-color: rgb(105, 202, 202);
-}
+
 </style>
