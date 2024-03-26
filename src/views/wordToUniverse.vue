@@ -8,6 +8,7 @@
 
     </div>
 
+    <!-- 以下在做增加 -->
     <a-float-button type="primary" @click="formState.isNew = true, showModel = true"
         style="position: absolute;width:80px; height: 80px;" />
     <a-modal :footer="null" :afterClose="modalCancel" :title="formState.year.year()" v-model:open="showModel">
@@ -15,8 +16,6 @@
             <a-typography-paragraph stlye="width=100%" v-model:content="formState.comment"
                 :editable="dayjs().year() == formState.year.year()" />  
         </div>
-
-
         <a-form v-if="formState.isNew" @finish="onFinish" :model="formState">
             <a-form-item :rules="[{ required: true, message: '請選擇月份' }]" name="year" label="年份">
                 <a-date-picker disabled v-model:value="formState.year" picker="year" />
