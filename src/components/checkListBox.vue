@@ -2,7 +2,7 @@
     <div class="container-center">
     <a-row>
         <a-col :span="10" style="padding-top:30px; padding-left: 30px;">   
-            <a-card hoverable size="large" @ok="showModel = false" v-model:open="showModel" title="⚝ 重要且緊急"  style="background-color: #FFDCDC;">
+            <a-card hoverable size="large" @click="handleClick"  title="⚝ 重要且緊急"  style="background-color: #FFDCDC;">
                 <li v-for="task in imUrgent" :key="task.commit">
                     <a-radio></a-radio>
                     {{ task.commit }}
@@ -65,7 +65,7 @@
         isNew: true,
         comment: ''
     })
-    const ok = (index) => {
+    const handleClick = (index) => {
         showModel.value = true ;
         formState.value.isNew = false ;
         formState.value.comment = comments[index].comment ;
