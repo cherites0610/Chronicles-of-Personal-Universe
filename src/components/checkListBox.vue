@@ -1,53 +1,47 @@
 <template>
-    <div class="container-center">
-        <a-row>
-            <a-col :span="10" style="padding-top:30px; padding-left: 30px;">
-                <a-card hoverable size="large" @click="cardClick('1')" title="⚝ 重要且緊急"
-                    style="background-color: #FFDCDC;">
-                    <li v-for="task in imUrgent" :key="task.commit">
-                        <div>
-                            <a-radio style="z-index: 1000;" @click="handleRadioClick(task.commit)">
-                                {{ task.commit }}
-                            </a-radio>
-                        </div>
-                    </li>
-                </a-card>
-            </a-col>
-            <a-col :span="10" style="padding-top:30px; padding-left: 30px;">
-                <a-card hoverable size="large" @click="cardClick('2')" title="⚝ 重要不緊急"
-                    style=" background-color: #E7FBDB;">
-                    <li v-for="task in imNourgent" :key="task.commit">
-                        <a-radio @click="handleRadioClick(task.commit)">
+    <a-flex horizontal justify="center" align="center"  style="height: 100%;">
+        <a-flex vertical> <!--前兩個-->
+            <a-card hoverable size="large" @click="cardClick('1')" title="⚝ 重要且緊急"
+        style="background-color: #FFDCDC;" class="shape">
+                <li v-for="task in imUrgent" :key="task.commit">
+                    <div>
+                        <a-radio style="z-index: 1000;" @click="handleRadioClick(task.commit)">
                             {{ task.commit }}
                         </a-radio>
-                    </li>
-                </a-card>
-            </a-col>
-        </a-row>
-        <a-row>
-            <a-col :span="10" style="padding-top:30px; padding-left: 30px;">
-                <a-card hoverable size="large" @click="cardClick('3')" title="⚝ 不重要但緊急"
-                    style=" background-color: #D9E4FF;">
-                    <li v-for="task in unimUrgent" :key="task.commit">
-                        <a-radio @click="handleRadioClick(task.commit)">
-                            {{ task.commit }}
-                        </a-radio>
-                    </li>
-                </a-card>
-            </a-col>
-            <a-col :span="10" style="padding-top:30px; padding-left: 30px;">
-                <a-card hoverable size="large" @click="cardClick('4')" title="⚝ 不重要不緊急"
-                    style=" background-color: #FFFFFF;">
-                    <li v-for="task in unimNourgent" :key="task.commit">
-                        <a-radio @click="handleRadioClick(task.commit)">
-                            {{ task.commit }}
-                        </a-radio>
-                    </li>
-                </a-card>
-            </a-col>
-        </a-row>
-    </div>
-
+                    </div>
+                </li>
+            </a-card>     
+                
+            <a-card hoverable size="large" @click="cardClick('2')" title="⚝ 重要不緊急"
+                style=" background-color: #E7FBDB; margin-top: 30px; " class="shape">
+                <li v-for="task in imNourgent" :key="task.commit">
+                    <a-radio @click="handleRadioClick(task.commit)">
+                        {{ task.commit }}
+                    </a-radio>
+                </li>
+            </a-card>  
+        </a-flex>
+        <a-flex vertical> <!--後兩個-->
+            <a-card hoverable size="large" @click="cardClick('3')" title="⚝ 不重要但緊急"
+            style=" background-color: #D9E4FF; margin-left: 30px;" class="shape">
+                <li v-for="task in unimUrgent" :key="task.commit">
+                    <a-radio @click="handleRadioClick(task.commit)">
+                        {{ task.commit }}
+                    </a-radio>
+                </li>
+            </a-card>
+    
+            <a-card hoverable size="large" @click="cardClick('4')" title="⚝ 不重要不緊急"
+                style=" background-color: #FFFFFF; margin-top: 30px; margin-left: 30px;" class="shape">
+                <li v-for="task in unimNourgent" :key="task.commit">
+                    <a-radio @click="handleRadioClick(task.commit)">
+                        {{ task.commit }}
+                    </a-radio>
+                </li>
+            </a-card>
+        </a-flex>
+    </a-flex>
+                
     <!-- 以下在做點開來顯示細項 -->
     <a-modal :forceRender="true" v-model:open="showModel" :footer="null" style="width: 40%;">
         <div style="text-align: center;">
@@ -59,7 +53,6 @@
             </a-radio>
         </li>
     </a-modal>
-
 </template>
 
 <script setup>
@@ -111,4 +104,14 @@ const handleRadioClick = (taskCommit) => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.A{
+    display: flex;
+    
+    justify-content: center;
+    
+}
+.shape{
+    
+}
+</style>
