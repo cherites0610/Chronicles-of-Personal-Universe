@@ -1,8 +1,8 @@
 <template>
     <a-flex horizontal justify="center" align="center"  style="height: 100%;">
-        <a-flex vertical> <!--前兩個-->
+        <a-flex vertical > <!--前兩個-->
             <a-card hoverable size="large" @click="cardClick('1')" title="⚝ 重要且緊急"
-        style="background-color: #FFDCDC;" class="shape">
+        style="background-color: #FFDCDC; width: 300px; height: 250px;" class="shape">
                 <li v-for="task in imUrgent" :key="task.commit">
                     <div>
                         <a-radio style="z-index: 1000;" @click="handleRadioClick(task.commit)">
@@ -13,7 +13,7 @@
             </a-card>     
                 
             <a-card hoverable size="large" @click="cardClick('2')" title="⚝ 重要不緊急"
-                style=" background-color: #E7FBDB; margin-top: 30px; " class="shape">
+                style=" background-color: #E7FBDB; margin-top: 30px; height: 250px;" class="shape">
                 <li v-for="task in imNourgent" :key="task.commit">
                     <a-radio @click="handleRadioClick(task.commit)">
                         {{ task.commit }}
@@ -23,7 +23,7 @@
         </a-flex>
         <a-flex vertical> <!--後兩個-->
             <a-card hoverable size="large" @click="cardClick('3')" title="⚝ 不重要但緊急"
-            style=" background-color: #D9E4FF; margin-left: 30px;" class="shape">
+            style=" background-color: #D9E4FF; width: 300px; margin-left: 30px; height: 250px;" class="shape">
                 <li v-for="task in unimUrgent" :key="task.commit">
                     <a-radio @click="handleRadioClick(task.commit)">
                         {{ task.commit }}
@@ -32,7 +32,7 @@
             </a-card>
     
             <a-card hoverable size="large" @click="cardClick('4')" title="⚝ 不重要不緊急"
-                style=" background-color: #FFFFFF; margin-top: 30px; margin-left: 30px;" class="shape">
+                style=" background-color: #FFFFFF; margin-top: 30px; margin-left: 30px; height: 250px;" class="shape">
                 <li v-for="task in unimNourgent" :key="task.commit">
                     <a-radio @click="handleRadioClick(task.commit)">
                         {{ task.commit }}
@@ -48,7 +48,7 @@
             <a-typography-title :level="4">⚝ 重要且緊急</a-typography-title>
         </div>
         <li v-for="task in imUrgent" :key="task.commit" style="padding-top: 5px;">
-            <a-radio>
+            <a-radio @click="handleRadioClick(task.commit)">
                 {{ task.commit }}
             </a-radio>
         </li>
@@ -60,6 +60,9 @@ import { ref } from 'vue';
 const imUrgent = [ //重要且緊急
     { commit: "期中考" },
     { commit: "超市特價" },
+    { commit: "超市特價" },
+    { commit: "超市特價" },
+    { commit: "超市特價" },
 ]
 const unimUrgent = [ //不重要緊急
     { commit: "上廁所" },
@@ -68,6 +71,9 @@ const unimUrgent = [ //不重要緊急
 const imNourgent = [ //重要不緊急
     { commit: "英文免修" },
     { commit: "期末報告" },
+    { commit: "超市特價" },
+    { commit: "超市特價" },
+    { commit: "超市特價" },
 ]
 const unimNourgent = [ //不重要不緊急
     { commit: "玩遊戲" },
