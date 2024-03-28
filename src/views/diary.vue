@@ -1,8 +1,8 @@
 <template>
     <span id="title">筆記本</span>
     <a-spin :spinning="spinning">
-        <div>
-            <contentCard @clickCard="handleClick" v-for="(key,index) in groups">
+        <div class="container">
+            <contentCard class="card" @clickCard="handleClick" v-for="(key,index) in groups">
                 <div style="padding-top: 10px; padding-left: 10px;">
                     {{ key }}
                 </div>                
@@ -35,5 +35,15 @@ const handleClick = () => {
     position: relative;
     top: 10px;
     left: 30px
+}
+
+.container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 45%;
 }
 </style>

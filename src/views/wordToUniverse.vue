@@ -1,17 +1,17 @@
 <template>
     <span id="title">給宇宙的話</span>
     <a-spin :spinning="spinning" size="large">
-        <div>
-            <contentCard @clickCard="handleCardClick(index)" v-for="(key, index) in comments" >
+        <div class="container">
+            <contentCard class="card" @clickCard="handleCardClick(index)" v-for="(key, index) in comments">
                 <div>
                     <h3 style="padding-top: 5px; padding-left: 10px;">
                         {{ key.year }}
                     </h3>
-                     <a-typography-paragraph :ellipsis="{rows:4}" :content="key.comment" style="padding-left: 10px; padding-right: 10px;"/>
-                </div>          
-        </contentCard>
+                    <a-typography-paragraph :ellipsis="{ rows: 4 }" :content="key.comment"
+                        style="padding-left: 10px; padding-right: 10px;" />
+                </div>
+            </contentCard>
         </div>
-        
     </a-spin>
 
     <a-float-button type="primary" @click="formState.isNew = true, showCreatModel = true" v-if="true"
@@ -26,14 +26,16 @@
             </a-form-item>
             <a-form-item>
                 <a-flex justify="center">
-                    <a-button key="submit" @click="showCreatModel=false" type="primary" style="background-color: #288CA3;">確定</a-button>
+                    <a-button key="submit" @click="showCreatModel = false" type="primary"
+                        style="background-color: #288CA3;">確定</a-button>
                 </a-flex>
             </a-form-item>
         </a-form>
     </a-modal>
 
-    <a-modal :title="editState.year" @ok="showEditModel=false" v-model:open="showEditModel">
-        <a-typography-paragraph v-model:content="editState.comment" :editable="editState.year==Number(dayjs().format('YYYY'))" />
+    <a-modal :title="editState.year" @ok="showEditModel = false" v-model:open="showEditModel">
+        <a-typography-paragraph v-model:content="editState.comment"
+            :editable="editState.year == Number(dayjs().format('YYYY'))" />
     </a-modal>
 
     <div>
@@ -58,7 +60,7 @@ const formState = ref({
 })
 
 const editState = ref({
-    year:2023 ,
+    year: 2023,
     comment: '',
 })
 
@@ -69,8 +71,8 @@ getWordToUById('1').then((result) => {
 
 const handleCardClick = (index) => {
     showEditModel.value = true;
-    editState.value.year=comments.value[index].year;
-    editState.value.comment=comments.value[index].comment
+    editState.value.year = comments.value[index].year;
+    editState.value.comment = comments.value[index].comment
     console.log(Number(dayjs().format('YYYY')))
 
 }
@@ -88,18 +90,13 @@ const modalCancel = () => {
     left: 30px
 }
 
-#container {
-    width: 100%;
+.container{
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 3% 25px 10% 50px;
 }
 
-.rect {
-    padding: 7px;
-    margin: 20px;
-    width: 43%;
+.card{
+    width: 45%;
 }
-
 </style>

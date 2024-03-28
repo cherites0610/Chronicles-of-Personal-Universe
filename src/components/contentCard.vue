@@ -15,7 +15,7 @@
 
 <style lang="scss" scoped>
 #card {
-    width: 35%;
+    width: 100%;
     height: 150px;
     border: 0.5px solid rgb(60, 53, 53);
     border-radius: 10px;

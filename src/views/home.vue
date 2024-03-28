@@ -59,7 +59,7 @@ import dayjs from 'dayjs';
 import '../mock/index'
 import { getScheduleById } from '../api/scheduleApi'
 
-const selectTime = ref();
+const selectTime = ref(dayjs());
 const selectSchedlues = ref([])
 const spinning = ref(true);
 const Schedules = ref({});
@@ -99,7 +99,6 @@ getScheduleById('2024-03-01', '2024-03-31').then((result) => {
     Schedules.value = result.data.schedules;
     sDate.value = Schedules.value.map((x) => { return x.dTime })
     spinning.value = false;
-    selectTime.value = dayjs();
 }).catch((err) => {
     console.log(err)
 })

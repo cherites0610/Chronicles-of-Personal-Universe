@@ -1,8 +1,8 @@
 <template>
     <span id="title">群組</span>
     <a-spin :spinning="spinning" size="large" >
-        <div>
-            <contentCard v-for="(key, index) in groups">
+        <div class="container">
+            <contentCard class="card" v-for="(key, index) in groups">
                 <div style="padding-left: 10px; padding-top: 10px;">
                    {{ key }} 
                 </div>                
@@ -41,5 +41,15 @@ getGroupsById(1).then((result) => {
     position: relative;
     top: 10px;
     left: 30px
+}
+
+.container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 45%;
 }
 </style>

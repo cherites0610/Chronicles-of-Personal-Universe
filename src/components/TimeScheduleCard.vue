@@ -1,7 +1,7 @@
 <template>
     <a-card style="height: 100%;width: 300px">
         <template #title>
-            <a-space style="width:100%" direction="vertical" align="center">{{ props.selectTime }}</a-space>
+            <a-space style="width:100%" direction="vertical" align="center">{{ props.selectTime.format('YYYY/MM/DD dddd') }}</a-space>
         </template>
 
         <a-row class="container" :gutter="10" v-for="key of array " :key="key">

@@ -3,6 +3,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 import vue from '@vitejs/plugin-vue'
 
+
 export default defineConfig({
   plugins: [vue(), 
     AutoImport({
@@ -21,8 +22,7 @@ export default defineConfig({
   }), 
   codeInspectorPlugin({
     bundler: 'vite',
-  })
-],
+  }),],
 
   server: {
     host: '0.0.0.0'
